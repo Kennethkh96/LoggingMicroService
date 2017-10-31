@@ -1,0 +1,28 @@
+{
+  "name": "loggingmicroservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kennethkh96/LoggingMicroService.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kennethkh96/LoggingMicroService/issues"
+  },
+  "homepage": "https://github.com/Kennethkh96/LoggingMicroService#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.16.7",
+    "@types/express": "^4.0.39"
+  }
+}

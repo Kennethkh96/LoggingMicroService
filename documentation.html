@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+      .note {
+          background-color: #fff;
+      }
+      .bold {
+          font-weight: bold;
+      }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Api documentation</h2>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#sendMail">Send a new logging request</a>
+        </h4>
+      </div>
+      <div id="sendMail" class="panel-collapse collapse in">
+        <div class="panel-body">
+            <!-- <strong> -->
+            <ul>
+                <li>Endpoint: /api/log</li>
+                <li>Method: POST    
+                <li>Paramters required: <strong>information, api_key</strong></li>
+                <li>information: a string containing the information you want to log</li>
+                <li>api_key: your supplied api key</li>
+                    </div>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#test">Retrieve logging information</a>
+          </h4>
+        </div>
+        <div id="test" class="panel-collapse collapse">
+          <div class="panel-body">
+              <!-- <strong> -->
+              <ul>
+                  <li>Endpoint: /api/log</li>
+                  <li>Method: GET    
+                  <li>Parameters required: <strong>api_key</strong></li>
+                  <li>Optional parameters: <strong>hour, day, week</strong></li>
+                  <li>api_key: your supplied api key</li>
+                  <li>hour: get all log information within the latest hour</li>
+                  <li>day: get all log information within the latest day</li>
+                  <li>week: get all log information within the latest week</li>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+        </div>
+      </div>
+  </div> 
+</div>
+    
+</body>
+</html>

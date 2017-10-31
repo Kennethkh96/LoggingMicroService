@@ -1,0 +1,18 @@
+{
+    "tuEbeO8eYn-6K2N1yBwUS-Pq3HUhBrWA": [
+        {
+            "Information": "owner: MailMicroService",
+            "Time": "2017-10-31T10:16:07.333Z"
+        },
+        {
+            "Info": "An email was sent to kooogt@gmail.com",
+            "Time": "2017-10-31T12:11:03.709Z"
+        }
+    ],
+    "DYtEt0TuEE-N7PaRnuYtk-7IADgw1rIx": [
+        {
+            "Information": "owner: Azure BudgetManager",
+            "Time": "2017-10-31T10:16:07.336Z"
+        }
+    ]
+}
