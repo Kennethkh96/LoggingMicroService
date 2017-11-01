@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 app.post('/api/log', (req, res) => {
     let info = req.body.information;
     let api_key = req.body.api_key;
+    
 
     if (info === undefined)
     {
