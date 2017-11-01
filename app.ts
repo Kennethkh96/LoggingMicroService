@@ -131,7 +131,7 @@ function GenerateApiKey(): string
 {
     let key = generateRandomString(10) + '-' +  generateRandomString(10) + '-' +  generateRandomString(10);
     return key;
-}
+} 
 
 function generateRandomString(length: any) {
     let text = '';
