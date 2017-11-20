@@ -4,7 +4,7 @@ import * as BodyParser from 'body-parser';
 import * as Fs from 'fs';
 import * as amqp from 'amqplib/callback_api';
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3001));
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
@@ -16,15 +16,18 @@ app.get('/', (req, res) => {
 });
 
 
-amqp.connect('amqp://1doFhxuC:WGgk9kXy_wFIFEO0gwB_JiDuZm2-PrlO@black-ragwort-810.bigwig.lshift.net:10802/SDU53lDhKShK', function (err, conn) {
+amqp.connect('amqp://1doFhxuC:WGgk9kXy_wFIFEO0gwB_JiDuZm2-PrlO@black-ragwort-810.bigwig.lshift.net:10803/SDU53lDhKShK', function (err, conn) {
     conn.createChannel(function (err, ch) {
         let ex = 'Rapid';
         ch.assertExchange(ex, 'direct', { durable: false });
-        ch.assertQueue('log', { exclusive: true }, function (err, q) {
+        ch.assertQueue('log', { exclusive: false }, function (err, q) {
+            console.log(err);
+            console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);
             ch.bindQueue(q.queue, ex, 'logtag');
-            ch.consume(q.queue, function (data) {
-
-                Logging(data);
+            console.log("bindque")
+            ch.consume(q.queue, function (data: any) {
+                    
+                Logging(data.content.toString());
 
             }, { noAck: true });
         });
@@ -32,8 +35,10 @@ amqp.connect('amqp://1doFhxuC:WGgk9kXy_wFIFEO0gwB_JiDuZm2-PrlO@black-ragwort-810
 });
 
 function Logging(data: any) {
-    let info = data.info;
-    let api_key = data.api_key;
+    let JsonData = JSON.parse(data);
+
+    let info = JsonData.info;
+    let api_key = JsonData.apikey;
 
     let logObj = {
         Info: info,

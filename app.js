@@ -5,25 +5,32 @@ var app = Express();
 var BodyParser = require("body-parser");
 var Fs = require("fs");
 var amqp = require("amqplib/callback_api");
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3001));
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 var log = JSON.parse(Fs.readFileSync(__dirname + '/log.txt').toString());
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/documentation.html');
 });
-amqp.connect('amqp://1doFhxuC:WGgk9kXy_wFIFEO0gwB_JiDuZm2-PrlO@black-ragwort-810.bigwig.lshift.net:10802/SDU53lDhKShK', function (err, conn) {
+amqp.connect('amqp://1doFhxuC:WGgk9kXy_wFIFEO0gwB_JiDuZm2-PrlO@black-ragwort-810.bigwig.lshift.net:10803/SDU53lDhKShK', function (err, conn) {
     conn.createChannel(function (err, ch) {
-        var q = 'logging';
-        ch.assertQueue(q, { durable: true });
-        ch.consume(q, function (data) {
-            Logging(data);
-        }, { noAck: true });
+        var ex = 'Rapid';
+        ch.assertExchange(ex, 'direct', { durable: false });
+        ch.assertQueue('log', { exclusive: false }, function (err, q) {
+            console.log(err);
+            console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);
+            ch.bindQueue(q.queue, ex, 'logtag');
+            console.log("bindque");
+            ch.consume(q.queue, function (data) {
+                Logging(data.content.toString());
+            }, { noAck: true });
+        });
     });
 });
 function Logging(data) {
-    var info = data.info;
-    var api_key = data.api_key;
+    var JsonData = JSON.parse(data);
+    var info = JsonData.info;
+    var api_key = JsonData.apikey;
     var logObj = {
         Info: info,
         Time: new Date()

@@ -7,6 +7,10 @@
         {
             "Info": "An email was sent to kooogt@gmail.com",
             "Time": "2017-10-31T12:11:03.709Z"
+        },
+        {
+            "Info": "An email was sent to kennethkh96@gmail.com",
+            "Time": "2017-11-20T11:24:06.942Z"
         }
     ],
     "DYtEt0TuEE-N7PaRnuYtk-7IADgw1rIx": [
